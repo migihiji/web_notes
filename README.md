@@ -22,3 +22,5 @@ Things you may want to cover:
 * Deployment instructions
 
 * ...
+
+検索機能の開発準備
