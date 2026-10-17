@@ -12,6 +12,38 @@
   </p>
 <% end %>
 
+<h2>記事を検索</h2>
+
+<%= form_with url: articles_path,
+              method: :get do |form| %>
+
+  <div class="form-field">
+    <%= form.label :q, "キーワード" %>
+    <%= form.search_field :q,
+          value: @keyword,
+          placeholder: "記事タイトルを検索" %>
+  </div>
+
+  <div class="form-field">
+    <%= form.label :category, "カテゴリ" %>
+
+    <%= form.select :category,
+          options_for_select(
+            [
+              ["すべて", ""],
+              ["Unity", "Unity"],
+              ["Ruby", "Ruby"],
+              ["Database", "Database"]
+            ],
+            @category
+          ) %>
+  </div>
+
+  <%= form.submit "検索する" %>
+
+  <%= link_to "条件をクリア", articles_path %>
+<% end %>
+
 <h2>記事一覧</h2>
 
 <% if @articles.any? %>

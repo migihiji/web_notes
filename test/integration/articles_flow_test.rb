@@ -21,6 +21,26 @@ class ArticlesFlowTest < ActionDispatch::IntegrationTest
     assert_response :redirect
   end
 
+test "タイトルで記事を検索できる" do
+  get articles_path, params: { q: "Unity" }
+
+  assert_response :success
+
+  assert_select "h3", text: "Unity入門"
+  assert_select "h3", text: "Ruby入門", count: 0
+end
+
+test "カテゴリで記事を絞り込める" do
+  get articles_path, params: {
+    category: "Ruby"
+  }
+
+  assert_response :success
+
+  assert_select "h3", text: "Ruby入門"
+  assert_select "h3", text: "Unity入門", count: 0
+end
+
   test "未ログインでも記事一覧を閲覧できる" do
     get articles_path
 

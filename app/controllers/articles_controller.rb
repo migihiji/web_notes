@@ -7,9 +7,35 @@ class ArticlesController < ApplicationController
                 only: [:edit, :update, :destroy]
 
   # GET /articles
-  def index
-    @articles = Article.order(created_at: :desc)
+  
+def index
+  @keyword = params[:q].to_s.strip
+  @category = params[:category].to_s.strip
+
+  @articles = Article.all
+
+  if @keyword.present?
+    escaped_keyword =
+      ActiveRecord::Base.sanitize_sql_like(@keyword)
+
+    @articles = @articles.where(
+      "title LIKE ?",
+      "%#{escaped_keyword}%"
+    )
   end
+
+  if @category.present?
+    @articles = @articles.where(
+      category: @category
+    )
+  end
+
+  @articles = @articles.order(
+    created_at: :desc,
+    id: :desc
+  )
+end
+
 
   # GET /articles/:id
   def show
