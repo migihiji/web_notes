@@ -1,0 +1,14 @@
+
+<h1>記事を編集</h1>
+
+<%= render "form", article: @article %>
+
+<p>
+  <%= link_to "記事に戻る",
+        article_path(@article) %>
+</p>
+
+<p>
+  <%= link_to "記事一覧に戻る",
+        articles_path %>
+</p>

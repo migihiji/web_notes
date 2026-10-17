@@ -1,0 +1,47 @@
+
+<h1>Web開発学習ノート</h1>
+
+<% if notice.present? %>
+  <p class="notice"><%= notice %></p>
+<% end %>
+
+<% if authenticated? %>
+  <p>
+    <%= link_to "新しい記事を投稿",
+          new_article_path %>
+  </p>
+<% end %>
+
+<h2>記事一覧</h2>
+
+<% if @articles.any? %>
+  <% @articles.each do |article| %>
+    <article class="article-card">
+      <h3><%= article.title %></h3>
+
+      <p>カテゴリ：<%= article.category %></p>
+
+      <p>
+        <%= truncate(article.body, length: 100) %>
+      </p>
+
+      <%= link_to "詳細", article_path(article) %>
+
+      <% if Current.user && article.user_id == Current.user.id %>
+        <%= link_to "編集",
+              edit_article_path(article) %>
+
+        <%= button_to "削除",
+              article_path(article),
+              method: :delete,
+              form: {
+                data: {
+                  turbo_confirm: "本当に削除しますか？"
+                }
+              } %>
+      <% end %>
+    </article>
+  <% end %>
+<% else %>
+  <p>記事はまだありません。</p>
+<% end %>

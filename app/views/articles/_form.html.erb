@@ -1,0 +1,35 @@
+
+<%= form_with model: article do |form| %>
+
+  <% if article.errors.any? %>
+    <div class="errors">
+      <h2>入力内容を確認してください</h2>
+
+      <ul>
+        <% article.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-field">
+    <%= form.label :title, "記事タイトル" %>
+    <%= form.text_field :title %>
+  </div>
+
+  <div class="form-field">
+    <%= form.label :category, "カテゴリ" %>
+    <%= form.text_field :category %>
+  </div>
+
+  <div class="form-field">
+    <%= form.label :body, "本文" %>
+    <%= form.text_area :body, rows: 10 %>
+  </div>
+
+  <div class="form-field">
+    <%= form.submit "保存する" %>
+  </div>
+
+<% end %>

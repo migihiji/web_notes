@@ -1,0 +1,31 @@
+<h1>Web開発学習ノート</h1>
+
+<p><%= @message %></p>
+
+<h2>記事一覧</h2>
+
+<% if @articles.any? %>
+
+  <% @articles.each do |article| %>
+    <hr>
+
+    <h3><%= article.title %></h3>
+
+    <p>
+      カテゴリ：
+      <%= article.category %>
+    </p>
+
+    <p><%= article.body %></p>
+
+    <p>
+      記事ID：
+      <%= article.id %>
+    </p>
+  <% end %>
+
+<% else %>
+
+  <p>記事はまだ登録されていません。</p>
+
+<% end %>

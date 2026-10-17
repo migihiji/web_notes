@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Web Notes</title>
+
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag :app %>
+    <%= javascript_importmap_tags %>
+  </head>
+
+  <body>
+    <nav>
+      <%= link_to "記事一覧", articles_path %>
+
+      <% if authenticated? %>
+        <span><%= Current.user.email_address %></span>
+
+        <%= button_to "ログアウト",
+              session_path,
+              method: :delete %>
+      <% else %>
+        <%= link_to "ログイン", new_session_path %>
+      <% end %>
+    </nav>
+
+    <%= yield %>
+  </body>
+</html>

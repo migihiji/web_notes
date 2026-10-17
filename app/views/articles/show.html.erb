@@ -1,0 +1,30 @@
+
+<% if notice.present? %>
+  <p class="notice"><%= notice %></p>
+<% end %>
+
+<h1><%= @article.title %></h1>
+
+<p>
+  カテゴリ：
+  <%= @article.category %>
+</p>
+
+<div class="article-body">
+  <%= simple_format(@article.body) %>
+</div>
+
+<p>
+  作成日時：
+  <%= @article.created_at.strftime("%Y/%m/%d %H:%M") %>
+</p>
+
+<p>
+  <%= link_to "記事を編集",
+        edit_article_path(@article) %>
+</p>
+
+<p>
+  <%= link_to "記事一覧に戻る",
+        articles_path %>
+</p>
