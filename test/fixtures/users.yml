@@ -1,4 +1,3 @@
-
 <% password_digest = BCrypt::Password.create("test-password-123") %>
 
 alice:

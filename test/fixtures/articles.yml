@@ -1,11 +1,11 @@
-# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+alice_article:
+  title: Unity入門
+  category: Unity
+  body: Unityの基本操作について説明します。
+  user: alice
 
-one:
-  title: MyString
-  category: MyString
-  body: MyText
-
-two:
-  title: MyString
-  category: MyString
-  body: MyText
+bob_article:
+  title: Ruby入門
+  category: Ruby
+  body: Rubyの基本構文について説明します。
+  user: bob
